@@ -12,8 +12,45 @@ body {
   font-size: 2rem;
 }
 
+.cookie {
+  width: 40rem;
+  background: #C19277;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  position: relative;
+  overflow: hidden;
+  border: 1rem solid #483434;
+}
+.cookie__spots {
+  width: 10rem;
+  aspect-ratio: 1/1;
+  background: #483434;
+  border-radius: 45%;
+  position: absolute;
+}
+.cookie__spots--first {
+  top: 10%;
+  left: 5%;
+}
+.cookie__spots--second {
+  right: 10%;
+  top: 5%;
+}
+.cookie__spots--third {
+  right: 5%;
+  bottom: 10%;
+}
+.cookie__spots--fourth {
+  left: 5%;
+  bottom: 10%;
+}
+
 body {
-  background: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #B7CADB, #54BAB9);
 }
 
 /*# sourceMappingURL=style.css.map */

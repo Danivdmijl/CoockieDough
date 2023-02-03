@@ -1,0 +1,39 @@
+@use "../../abstracts/colors";
+
+.cookie{
+    width: 40rem;
+    background: map-get(colors.$cookie,"background");
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    position: relative;
+    overflow: hidden;
+    border: 1rem solid map-get(colors.$cookie,"spots");;
+
+    &__spots{
+        width: 10rem;
+        aspect-ratio: 1/1;
+        background: map-get(colors.$cookie,"spots");;
+        border-radius: 45%;
+        position: absolute;
+        
+        &--first{
+            top: 10%;
+            left: 5%;
+        }
+
+        &--second{
+            right: 10%;
+            top: 5%;
+        }
+
+        &--third{
+            right: 5%;
+            bottom: 10%;
+        }
+
+        &--fourth{
+            left: 5%;
+            bottom: 10%;
+        }
+    }
+}

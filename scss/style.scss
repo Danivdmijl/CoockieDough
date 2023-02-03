@@ -1,5 +1,3 @@
-@use "./reset.scss";
-
-body{
-    background: green;
-}
+@use "./abstracts/reset";
+@use "./components/cookie/cookie.scss";
+@use "./base.scss";
