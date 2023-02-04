@@ -1,0 +1,13 @@
+@use "../../abstracts/colors";
+
+.save{
+    font-size: 100%;
+    height: min-content;
+    padding: 2rem;
+    background: map-get(colors.$cookie, "spots" ) ;
+    color: whitesmoke;
+    border: none;
+    width: 20rem;
+    transform: translateY(2.5rem);
+    border-radius: 0.5rem;
+}

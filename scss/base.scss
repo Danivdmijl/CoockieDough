@@ -1,7 +1,14 @@
+@use "./abstracts/colors";
+
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     background: linear-gradient(to bottom right, #B7CADB, #54BAB9);
+    font-family: 'Open Sans', sans-serif;
+    color: map-get(colors.$cookie, "spots" ) ;
+}
+
+.buttonAndAvatarWrapper{
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
 }
