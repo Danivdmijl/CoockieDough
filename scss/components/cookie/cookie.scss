@@ -1,7 +1,7 @@
 @use "../../abstracts/colors";
 
 .cookie{
-    width: 40rem;
+    width: 30rem;
     background: map-get(colors.$cookie,"background");
     border-radius: 50%;
     aspect-ratio: 1/1;
@@ -21,7 +21,7 @@
 
 
     &__spots{
-        width: 10rem;
+        width: 5rem;
         aspect-ratio: 1/1;
         background: map-get(colors.$cookie,"spots");;
         border-radius: 45%;

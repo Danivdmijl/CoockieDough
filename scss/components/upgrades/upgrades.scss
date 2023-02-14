@@ -4,7 +4,6 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
     background: map-get(colors.$upgrades, "background");
     width: max-content;
     border-radius: 0.7rem;

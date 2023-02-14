@@ -13,7 +13,7 @@ body {
 }
 
 .cookie {
-  width: 40rem;
+  width: 30rem;
   background: #C19277;
   border-radius: 50%;
   aspect-ratio: 1/1;
@@ -30,7 +30,7 @@ body {
   transform: scale(0.97);
 }
 .cookie__spots {
-  width: 10rem;
+  width: 5rem;
   aspect-ratio: 1/1;
   background: #483434;
   border-radius: 45%;
@@ -86,7 +86,6 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   background: whitesmoke;
   width: max-content;
   border-radius: 0.7rem;
@@ -222,7 +221,7 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   font-weight: 300;
-  width: 50%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
