@@ -18,6 +18,9 @@ class Cookie{
         this.htmlElement.classList.add("cookie--chocolate");
     }
 
+    onStyleChangedRedValvet() {
+        this.htmlElement.classList.add("cookie--redvalvet");
+    }
 }
 
 class Score{
@@ -117,6 +120,26 @@ class ChocolateCookie{
     }
 }
 
+class RedValvetCookie{
+    htmlElement = undefined;
+    bought = false;
+    cookie = undefined;
+
+    constructor(htmlElement, cookie) {
+        this.htmlElement = htmlElement;  
+        this.cookie = cookie;
+        this.htmlElement.onclick = this.onRedValvetCookieClicked
+    }
+
+    onRedValvetCookieClicked = () => {
+        if (this.bought === false) {
+            this.bought = true
+            this.cookie.onStyleChangedRedValvet();
+            this.cookie.score.addPoints();
+        }
+    }
+}
+
 
 const score = new Score(0, "Default Score", document.getElementById("js--score"));
 const cookie = new Cookie("Default", document.getElementById("js--cookie"), score);
@@ -125,9 +148,12 @@ const cookie = new Cookie("Default", document.getElementById("js--cookie"), scor
 const multiplier = new Multiplier(document.getElementById("js--multiplier"), cookie);
 const auto = new AutoScore(document.getElementById("js--autoscore"), score);
 const chocolate = new ChocolateCookie(document.getElementById("js--chocolate"), cookie);
+const redvalvet = new RedValvetCookie(document.getElementById("js--redvalvet"), cookie);
 
-const multiplierMobile = new Multiplier(document.getElementById("js--multiplier--mobile"), cookie);
-const autoMobile = new auto(document.getElementById("js--autoscore--mobile"), score);
-const chocolateMobile = new chocolate(document.getElementById("js--chocolate--mobile"), cookie);
+
+const multiplierPc = new Multiplier(document.getElementById("js--multiplier--pc"), cookie);
+const autoPc = new AutoScore(document.getElementById("js--autoscore--pc"), score);
+const chocolatePc = new ChocolateCookie(document.getElementById("js--chocolate--pc"), cookie);
+const redvalvetPc = new RedValvetCookie(document.getElementById("js--redvalvet--pc"), cookie);
 
 
