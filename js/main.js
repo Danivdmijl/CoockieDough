@@ -14,6 +14,10 @@ class Cookie{
         this.score.onCookieClicked(this.factor);
     }
 
+    onStyleChanged() {
+        this.htmlElement.classList.add("cookie--chocolate");
+    }
+
 }
 
 class Score{
@@ -43,6 +47,11 @@ class Score{
             this.score = this.score + 500;
             this.htmlElement.innerText = this.score;
         }, 10000)
+    }
+
+    addPoints() {
+        this.score = this.score + 10000;
+        this.htmlElement.innerText = this.score;
     }
 }
 
@@ -81,7 +90,29 @@ class AutoScore{
     onAutoScoreClicked = () => {
         if (this.bought === false) {
             this.bought = true;
+            this.score.subtractScore();
             this.score.onAutoScoreClicked();            
+        }
+    }
+}
+
+
+class ChocolateCookie{
+    htmlElement = undefined;
+    bought = false;
+    cookie = undefined;
+
+    constructor(htmlElement, cookie) {
+        this.htmlElement = htmlElement;  
+        this.cookie = cookie;
+        this.htmlElement.onclick = this.onChocolateCookieClicked
+    }
+
+    onChocolateCookieClicked = () => {
+        if (this.bought === false) {
+            this.bought = true
+            this.cookie.onStyleChanged();
+            this.cookie.score.addPoints();
         }
     }
 }
@@ -89,9 +120,14 @@ class AutoScore{
 
 const score = new Score(0, "Default Score", document.getElementById("js--score"));
 const cookie = new Cookie("Default", document.getElementById("js--cookie"), score);
+
+
 const multiplier = new Multiplier(document.getElementById("js--multiplier"), cookie);
 const auto = new AutoScore(document.getElementById("js--autoscore"), score);
+const chocolate = new ChocolateCookie(document.getElementById("js--chocolate"), cookie);
+
+const multiplierMobile = new Multiplier(document.getElementById("js--multiplier--mobile"), cookie);
+const autoMobile = new auto(document.getElementById("js--autoscore--mobile"), score);
+const chocolateMobile = new chocolate(document.getElementById("js--chocolate--mobile"), cookie);
 
 
-
-console.log(multiplier);
