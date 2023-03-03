@@ -56,6 +56,11 @@ class Score{
         this.score = this.score + 10000;
         this.htmlElement.innerText = this.score;
     }
+
+    scoreloaded(newScore){
+        this.score = newScore;
+        this.htmlElement.innerText = this.score;
+    }
 }
 
 class Multiplier{
@@ -108,16 +113,19 @@ class ChocolateCookie{
     constructor(htmlElement, cookie) {
         this.htmlElement = htmlElement;  
         this.cookie = cookie;
-        this.htmlElement.onclick = this.onChocolateCookieClicked
+        this.htmlElement.onclick = this.onChocolateCookieClicked;
     }
 
     onChocolateCookieClicked = () => {
-        if (this.bought === false) {
-            this.bought = true
+        if (this.bought === false && window.localStorage.getItem("chocolateCookie") !== "true"){
+            this.bought = true;
+            window.localStorage.setItem("chocolateCookie",this.bought);
             this.cookie.onStyleChanged();
             this.cookie.score.addPoints();
         }
+        this.cookie.onStyleChanged();
     }
+
 }
 
 class RedValvetCookie{
@@ -140,8 +148,37 @@ class RedValvetCookie{
     }
 }
 
+class Save{
+    htmlElement;
 
-const score = new Score(0, "Default Score", document.getElementById("js--score"));
+    constructor(newHTMLElement){
+        this.htmlElement = newHTMLElement;
+        this.htmlElement.onclick = this.onSaveButtonClicked;
+    }
+
+    onSaveButtonClicked = () =>{
+        window.localStorage.setItem("score",score.score);
+    }
+}
+
+class Load{
+    score;
+
+    constructor(score){
+        this.score = score;
+
+        this.onLoad();
+    }
+
+    onLoad = function(){
+        const scoreFromLocalStorage = window.localStorage.getItem("score");
+        if(scoreFromLocalStorage !== null){
+            this.score.scoreloaded(parseInt(scoreFromLocalStorage)); 
+        }  
+    }
+}
+
+const score = new Score(333, "Default Score", document.getElementById("js--score"));
 const cookie = new Cookie("Default", document.getElementById("js--cookie"), score);
 
 
@@ -149,11 +186,10 @@ const multiplier = new Multiplier(document.getElementById("js--multiplier"), coo
 const auto = new AutoScore(document.getElementById("js--autoscore"), score);
 const chocolate = new ChocolateCookie(document.getElementById("js--chocolate"), cookie);
 const redvalvet = new RedValvetCookie(document.getElementById("js--redvalvet"), cookie);
-
+const save = new Save(document.getElementById("js--save"));
+const load = new Load(score);
 
 const multiplierPc = new Multiplier(document.getElementById("js--multiplier--pc"), cookie);
 const autoPc = new AutoScore(document.getElementById("js--autoscore--pc"), score);
 const chocolatePc = new ChocolateCookie(document.getElementById("js--chocolate--pc"), cookie);
 const redvalvetPc = new RedValvetCookie(document.getElementById("js--redvalvet--pc"), cookie);
-
-
