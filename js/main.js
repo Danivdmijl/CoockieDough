@@ -67,22 +67,34 @@ class Multiplier{
     factor = 100;
     htmlElement = undefined;
     cookie = undefined;
-    bought = false;
+    bought = undefined;
 
     constructor(htmlElement, cookie) {
         this.htmlElement = htmlElement;
         this.cookie = cookie;
         this.htmlElement.onclick = this.onMultiplierClicked;
+        this.controle();
     }
 
     onMultiplierClicked = () => {
-        if (this.bought === false) {
+        this.bought = false;
+        if (this.bought === false && window.localStorage.getItem("multiplier") !== "true"){
             this.bought = true;
+            window.localStorage.setItem("multiplier",this.bought);
             this.cookie.score.subtractScore();
-            this.cookie.factor = this.factor;   
+            this.cookie.factor = this.factor; 
         }
     }
+
+    controle = () => {
+        if (window.localStorage.getItem("multiplier") === "true"){
+            this.cookie.factor = this.factor;
+        }
+    }
+    
 }
+
+
 
 class AutoScore{
     htmlElement = undefined;
@@ -140,11 +152,13 @@ class RedValvetCookie{
     }
 
     onRedValvetCookieClicked = () => {
-        if (this.bought === false) {
-            this.bought = true
+        if (this.bought === false && window.localStorage.getItem("redvalvetcookie") !== "true"){
+            this.bought = true;
+            window.localStorage.setItem("redvalvetcookie",this.bought);
             this.cookie.onStyleChangedRedValvet();
             this.cookie.score.addPoints();
         }
+        this.cookie.onStyleChangedRedValvet();
     }
 }
 
@@ -178,7 +192,7 @@ class Load{
     }
 }
 
-const score = new Score(333, "Default Score", document.getElementById("js--score"));
+const score = new Score(0, "Default Score", document.getElementById("js--score"));
 const cookie = new Cookie("Default", document.getElementById("js--cookie"), score);
 
 
