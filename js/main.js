@@ -47,9 +47,9 @@ class Score{
 
     onAutoScoreClicked() {
         setInterval( () => {
-            this.score = this.score + 500;
+            this.score = this.score + 250;
             this.htmlElement.innerText = this.score;
-        }, 10000)
+        }, 5000)
     }
 
     addPoints() {
@@ -99,19 +99,28 @@ class Multiplier{
 class AutoScore{
     htmlElement = undefined;
     score = undefined;
-    bought = false;
+    bought = undefined;
 
     constructor(htmlElement, score) {
         this.htmlElement = htmlElement;
         this.score = score;
         this.htmlElement.onclick = this.onAutoScoreClicked;
+        this.controle();
     }
 
     onAutoScoreClicked = () => {
-        if (this.bought === false) {
+        this.bought = false;
+        if (this.bought === false && window.localStorage.getItem("autoscore") !== "true"){
             this.bought = true;
+            window.localStorage.setItem("autoscore",this.bought);
             this.score.subtractScore();
-            this.score.onAutoScoreClicked();            
+            this.score.onAutoScoreClicked();
+        }
+    }
+
+    controle = () => {
+        if (window.localStorage.getItem("autoscore") === "true"){
+            this.score.onAutoScoreClicked();
         }
     }
 }
